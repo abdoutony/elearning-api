@@ -1,20 +1,6 @@
-const passport = require('passport');
 const jwt = require('jsonwebtoken');
-
-exports.authenticate = function (req, res, next) {
-    passport.authenticate('jwt', function (err, user, info) {
-        if (err) {
-            return next(err);
-        }
-
-        if (!user) {
-            return res.status(401).send({success: false, msg: 'Unauthorized.'});
-        }
-
-        req.user = user;
-        next();
-    })(req, res, next);
-};
+const User = require("../models/user")
+require("dotenv").config()
 
 exports.isAdmin = function (req, res, next) {
     if (req.user.role !== 'admin') {
@@ -25,16 +11,12 @@ exports.isAdmin = function (req, res, next) {
 };
 
 exports.verifyToken = async function (req, res, next) {
-    const token = req.headers['x-access-token'];
-    if (!token) {
-        return res.status(401).send({
-            message: 'No token provided'
-        });
-    }
-
+    const accessToken = req.header('authorization');
+    if (!accessToken) return res.status(401).json({ message: 'No access token provided' });
     try {
-        const decoded = jwt.verify(token, process.env.SECRET);
-        const user = await User.findById(decoded.user._id);
+        const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+        console.log(decoded)
+        const user = await User.findById(decoded.id);
         if (!user) {
             return res.status(401).send({
                 message: 'User not found'
