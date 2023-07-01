@@ -1,49 +1,51 @@
 // services/ExampleService.js
-const {Example} = require('../models/example');
+// const { Example } = require("../models/example");
 
-exports.create = async (exampleData) => {
+exports.create = async (exampleData, Model) => {
   try {
-    const example = await Example.create(exampleData);
+    const example = await Model.create(exampleData);
     return example;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-exports.gets = async () => {
+exports.gets = async (Model) => {
   try {
-    const examples = await Example.find();
+    const examples = await Model.find();
     return examples;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-exports.get = async (id) => {
+exports.get = async (id, Model) => {
   try {
-    const example = await Example.findById(id);
-    if (!example) throw new Error('Example not found');
+    const example = await Model.findById(id);
+    if (!example) throw new Error(" not found");
     return example;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-exports.update = async (id, exampleData) => {
+exports.update = async (id, exampleData, Model) => {
   try {
-    const example = await Example.findByIdAndUpdate(id, exampleData, { new: true });
-    if (!example) throw new Error('Example not found');
+    const example = await Model.findByIdAndUpdate(id, exampleData, {
+      new: true,
+    });
+    if (!example) throw new Error(" not found");
     return example;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-exports.delete = async (id) => {
+exports.delete = async (id, Model) => {
   try {
-    const example = await Example.findByIdAndDelete(id);
-    if (!example) throw new Error('Example not found');
-    return 'Example deleted';
+    const example = await Model.findByIdAndDelete(id);
+    if (!example) throw new Error(" not found");
+    return " deleted";
   } catch (error) {
     throw new Error(error.message);
   }

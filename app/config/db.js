@@ -12,10 +12,10 @@ exports.connect = (dbUrl) => {
       );
     })
     .catch((err) => {
-      console.error("Error connecting to mongo", err.reason);
+      console.error("Error connecting to mongo", err.message);
     });
 };
 
-exports.close = async()=>{
-  await mongoose.connection.close()
-}
+exports.close = async () => {
+  await mongoose.connection.close();
+};

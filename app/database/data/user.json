@@ -3,6 +3,22 @@
        "firstname":"Abdelkader",
        "lastname":"Lounis",
        "email":"a@a.com",
-       "password":"123456789"
+       "password":"$2a$10$fFF6qZUaPVmejkMhwOAWYulVNkTh7JFJP7H76XgoFrpaW32Trd4dy",
+       "role":"admin"
+    },
+    {
+        "firstname":"Fawzi",
+        "lastname":"Chibah",
+        "email":"b@b.com",
+        "password":"$2a$10$fFF6qZUaPVmejkMhwOAWYulVNkTh7JFJP7H76XgoFrpaW32Trd4dy",
+        "role":"teacher"
+    },
+    {
+        "firstname":"Abdelhafid",
+        "lastname":"Bedri",
+        "email":"c@c.com",
+        "password":"$2a$10$fFF6qZUaPVmejkMhwOAWYulVNkTh7JFJP7H76XgoFrpaW32Trd4dy",
+        "role":"student"
     }
+
 ]

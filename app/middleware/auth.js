@@ -9,6 +9,19 @@ exports.isAdmin = function (req, res, next) {
 
     next();
 };
+exports.isTeacher = function (req, res, next) {
+    if (req.user.role !== 'teacher') {
+        return res.status(401).send({success: false, msg: 'Unauthorized. Teacher role required.'});
+    }
+    next();
+};
+exports.isTeacherOrAdmin = function (req, res, next) {
+    if (req.user.role !== 'teacher' || req.user.role !== 'admin') {
+        return res.status(401).send({success: false, msg: 'Unauthorized. Admin or Teacher role required.'});
+    }
+    next();
+};
+
 
 exports.verifyToken = async function (req, res, next) {
     const accessToken = req.header('authorization');
